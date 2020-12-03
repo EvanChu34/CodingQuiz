@@ -119,19 +119,27 @@ answerChoices.addEventListener("click", function (event){
 });	
 
 
+
+
+var userScore = document.querySelector("#user-score");
+
+function giveScore(){
+    userScore.textContent = "Your score was: " + secondsLeft + "!"
+}
+
+
 var hsInput = document.querySelector("#hs-text");
 var hsForm = document.querySelector("#high-score");
 var hsList = document.querySelector("#hs-list");
-
-var hs = [];
+var score = [];
 
 function renderHS(){
-    hsList.innerHTML = "";
-    for (var i = 0; i < hs.length; i++) {
-        var hs = hs[i];
-        
+   
+    for (var i=0; i<score.length; i++) {
+        var score = score[i];
+
         var li = document.createElement("li");
-        li.textContent = hs;
+        li.textContent = score;
         li.setAttribute("data-index",i);
 
         hsList.appendChild(li);
@@ -139,16 +147,15 @@ function renderHS(){
 }
 
 function init(){
-    var storedHS = JSON.parse(localStorage.getItem("hs"));
+    var storedHS = JSON.parse(localStorage.getItem("score"));
     if (storedHS !== null){
-        hs = storedHS;
+        score = storedHS;
     }
     renderHS();
 }
 
-
 function storeHS(){
-    localStorage.setItem("hs", JSON.stringify(hs));
+    localStorage.setItem("score", JSON.stringify(score));
 }
 
 hsForm.addEventListener("submit", function(event) {
@@ -160,13 +167,12 @@ hsForm.addEventListener("submit", function(event) {
         return;
     }
 
-    hs.push(hsText);
+    score.push(hsText);
     hsInput.value = "";
 
     storeHS();
     renderHS();
-
-})
+});
 
 
 
