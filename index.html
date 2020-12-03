@@ -14,7 +14,7 @@
         <br>
         <br>
         <br>
-        <button type = "button" id ="start-button">Start Quiz</button>
+        <button type = "button" id ="start-button" >Start Quiz</button>
     </div>
   
     <br>
@@ -28,11 +28,11 @@
             <br>
             <h3 id= "questions">Question</h3>
             <ul id= "answers">
-                <li class="answerChoice">A: </li>
+                <div class="answerChoice"> </div>
                 <br>
-                <li class="answerChoice">B: </li>
+                <div class="answerChoice"> </div>
                 <br>
-                <li class="answerChoics">C: </li>
+                <div class="answerChoics"> </div>
             </ul>
             <br>
         </div>
@@ -40,12 +40,18 @@
         <h5 id="result"></h5>
     </div>
     
-
+    <br>
+    <br>
+    <br>
     
-
-
-
-
+    <div class="container" id="end">
+        <h3>Finished! Good Job!</h3>    
+        <form id = "high-score">
+            <label for="hs-text">Add your High Score!!!</label>
+            <input type="text" placeholder="Add initals here!" name="hs-text" id="hs-text"/>
+            <ul id="hs-list"></ul>
+        </form>
+    </div>
 
     <scripts src="questions.js"></script>
     <script src="script.js"></script>

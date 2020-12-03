@@ -1,4 +1,6 @@
 console.log("work please");
+
+
 var startBtn = document.querySelector("#start-button");
 
 var timerEl = document.querySelector("#timer");
@@ -61,6 +63,7 @@ var questions = [
 ];
 
 function startQuiz(){
+
     countDown();
     renderQuestion();
 }
@@ -71,7 +74,7 @@ function countDown(){
         timerEl.textContent = secondsLeft; 
         if(secondsLeft <= 0 || questionNumber === questions.length){
            clearInterval(timerDown)
-       }
+       } 
     }, 1000)
 };
 
@@ -98,7 +101,6 @@ startBtn.addEventListener("click", renderQuestion);
 
 function showResult(){
     var answerResult = document.querySelector("#result")
-    
 }
 
 answerChoices.addEventListener("click", function (event){
@@ -115,4 +117,57 @@ answerChoices.addEventListener("click", function (event){
 	}
 	renderQuestion();
 });	
+
+
+var hsInput = document.querySelector("#hs-text");
+var hsForm = document.querySelector("#high-score");
+var hsList = document.querySelector("#hs-list");
+
+var hs = [];
+
+function renderHS(){
+    hsList.innerHTML = "";
+    for (var i = 0; i < hs.length; i++) {
+        var hs = hs[i];
+        
+        var li = document.createElement("li");
+        li.textContent = hs;
+        li.setAttribute("data-index",i);
+
+        hsList.appendChild(li);
+    }
+}
+
+function init(){
+    var storedHS = JSON.parse(localStorage.getItem("hs"));
+    if (storedHS !== null){
+        hs = storedHS;
+    }
+    renderHS();
+}
+
+
+function storeHS(){
+    localStorage.setItem("hs", JSON.stringify(hs));
+}
+
+hsForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    var hsText = hsInput.value.trim();
+
+    if(hsText === ""){
+        return;
+    }
+
+    hs.push(hsText);
+    hsInput.value = "";
+
+    storeHS();
+    renderHS();
+
+})
+
+
+
 
