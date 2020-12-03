@@ -1,12 +1,15 @@
 var startBtn = document.querySelector("start-button");
-var answerBtn = document.createElement("");
-var answerChoices = document.createElement("li");
-var timerDisplay = document.querySelector("#seconds-left");
+var quizBody = document.querySelector("#quiz");
+
+var questionHeader = document.getElementById("questions")
+var answerChoices = document.getElementsById("answers");
+var timerDisplay = document.getElementById("timer");
 var secondsLeft = 60;
 var test, question, choice, choices;
-var questionHead = doucment.createElement("p");
-var questionNumber = -1;
+var questionNumber = 0;
 var answer;
+
+
 var questions = [
     {
         title: "Which HTML element do we put in JavaScript?",
@@ -50,34 +53,36 @@ var questions = [
     }
 ];
 
+
 startBtn.addEventListener('click', startQuiz);
 
 function startQuiz(){
     coundDown();
     renderQuestion();
-    
 }
 
 function coundDown(){
-    var timeInterval = setInterval(function(){
-        if(secondsLeft <= 0){
-            clearInterval(secondsLeft = 0)
-        }
-        timerDisplay.innerHTML = secondsLeft
-        secondsLeft -=1
-    }, 1000)
+   var timerDown = setInterval(function(){
+        
+        secondsLeft--;
+        timerDisplay.textContent = "Time;" + secondsLeft;
 
-    if(timeInterval === 0){
-        renderResults();
-    }
+        if(secondsLeft <= 0){
+            clearInterval(timerDown)
+        }
+    }, 500)
+
+    //if(timeInterval === 0){
+    //    renderResults();
+    //}
 }
 
 function renderQuestion(){
-    
-	questionNumber++;
+
+    questionNumber++;
 	answer = questions[questionNumber].answer;
 
-	questionHead.textContent = questions[questionNumber].title;
+	questionHeader.textContent = questions[questionNumber].title;
 	answerChoices.innerHTML = "";
 
 	var choices = questions[questionNumber].choices;
@@ -86,15 +91,17 @@ function renderQuestion(){
 		var nextQuestion = document.createElement("button");
 
 		nextQuestion.textContent = choices[i];
-		answerBtn = answerChoices.appendChild(nextChoice).setAttribute();
-	}
+        answerBtn = answerChoices.appendChild(nextQuestion)
+        
+    }
+
 }
 
 
 
 function showResult(){
 	var answerResult = document.getElementByID("result")
-
+}
 
 answerChoices.addEventListener("click", function (event){
 	var answerResult = document.getElementByID("result")
@@ -110,14 +117,4 @@ answerChoices.addEventListener("click", function (event){
 	}
 	renderQuestion();
 });	
-
-
-
-
-
-
-
-
-
-
 
