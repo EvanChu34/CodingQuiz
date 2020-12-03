@@ -1,12 +1,11 @@
-var startBtn = document.querySelector("start-button");
-var quizBody = document.querySelector("#quiz");
+var startBtn = document.querySelector("#start-button");
 
-
-var timerDisplay = document.getElementById("timer");
+var timerEl = document.querySelector("#timer");
 var secondsLeft = 60;
 
 var questionHeader = document.getElementById("questions");
 var answerChoices = document.getElementsById("answers");
+
 var questionNumber = -1;
 var answer;
 
@@ -21,11 +20,10 @@ function startQuiz(){
 function coundDown(){
    var timerDown = setInterval(function(){
         secondsLeft--;
-        timerDisplay.textContent = "Time;" + secondsLeft;
-
+        timerEl.textContent = "Time;" + secondsLeft; 
         if(secondsLeft === 0 || questionNumber === questions.length){
-            clearInterval(timerDown)
-        }
+           clearInterval(timerDown)
+       }
     }, 500)
 }
 
@@ -42,18 +40,19 @@ function renderQuestion(){
 	for (var i=0; i<choices.length; i++){
 		var nextQuestion = document.createElement("button");
 		nextQuestion.textContent = choices[i];
-        document.answerChoices.appendChild(nextQuestion)
+        answerBtn = answerChoices.appendChild(nextQuestion)
     }
 
 }
 
-startBtn.addEventListener('click', renderQuestion);
+startBtn.addEventListener('click', coundDown);
 
 
 
 
 function showResult(){
-	var answerResult = document.getElementByID("result")
+    var answerResult = document.getElementByID("result")
+    
 }
 
 answerChoices.addEventListener("click", function (event){
