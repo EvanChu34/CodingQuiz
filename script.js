@@ -1,11 +1,9 @@
-console.log("work please");
-
 
 var startBtn = document.querySelector("#start-button");
 
 var timerEl = document.querySelector("#timer");
 var secondsLeft = 60;
-
+var userScore = document.querySelector("#user-score");
 var questionHeader = document.querySelector("#questions");
 var answerChoices = document.querySelector("#answers");
 
@@ -78,7 +76,6 @@ function countDown(){
     }, 1000)
 };
 
-
 function renderQuestion(){
     questionNumber++;
 	answer = questions[questionNumber].answer
@@ -97,7 +94,6 @@ function renderQuestion(){
 
 startBtn.addEventListener("click", countDown);
 startBtn.addEventListener("click", renderQuestion);
-
 
 function showResult(){
     var answerResult = document.querySelector("#result")
@@ -118,15 +114,9 @@ answerChoices.addEventListener("click", function (event){
 	renderQuestion();
 });	
 
-
-
-
-var userScore = document.querySelector("#user-score");
-
 function giveScore(){
     userScore.textContent = "Your score was: " + secondsLeft + "!"
 }
-
 
 var hsInput = document.querySelector("#hs-text");
 var hsForm = document.querySelector("#high-score");
@@ -134,7 +124,6 @@ var hsList = document.querySelector("#hs-list");
 var score = [];
 
 function renderHS(){
-   
     for (var i=0; i<score.length; i++) {
         var score = score[i];
 
